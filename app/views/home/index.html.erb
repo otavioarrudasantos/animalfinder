@@ -1,70 +1,32 @@
 <br/>
+<br/>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
+    <% @pets.each do |pet| %>
+      <div class="col">
         <div class="card">
-            <!--<img src="..." class="card-img-top" alt="...">-->
+            <% if pet.photo.attached? %>
+              <img src="<%=(url_for(pet.photo))%>" class="card-img-top" alt="...">
+            <% end %>
             <div class="card-body">
-                <h5 class="card-title">Thor</h5>
-                <p class="card-text">Thor é um cachorro da raça fila visto pela última vez perto da rodoviária</p>
+                <h5 class="card-title"><%= pet.nome %></h5>
+                <p class="card-text"><%= pet.info_extra %></p>
                 <ul>
-                    <li><strong>Idade</strong>: 4 anos</li>
-                    <li><strong>Cidade/Estado</strong>: Marília / SP</li>
-                    <li><strong>Status</strong>: Perdido</li>            
+                    <li><strong>Idade</strong>: <%= pet.idade %> ano(s)</li>
+                    <li><strong>Cidade/Estado</strong>: <%= pet.cidade %> / <%= pet.estado %></li>
+                    <li><strong>Status</strong>: 
+                        <% if pet.status == 0 %>
+                          <td> Perdido </td>
+                        <% elsif pet.status == 1 %>
+                          <td> Comunicado </td>
+                        <% else %>
+                          <td> Encontrado </td>
+                        <% end %>
+                    </li>            
 
                 </ul>
-                <a href="#" class="btn btn-primary">Encontrei!</a>
+                <%= link_to 'Encontrei!', pet, class:"btn btn-success" %>
+                
             </div>
         </div>
     </div>
-  <div class="col">
-    <div class="card">
-      <!--<img src="..." class="card-img-top" alt="...">-->
-      <div class="card-body">
-        <h5 class="card-title">Thor</h5>
-        <p class="card-text">Thor é um cachorro da raça fila visto pela última vez perto da rodoviária</p>
-        <ul>
-            <li><strong>Idade</strong>: 4 anos</li>
-            <li><strong>Cidade/Estado</strong>: Marília / SP</li>
-            <li><strong>Status</strong>: Perdido</li>            
-
-        </ul>
-        <a href="#" class="btn btn-primary">Encontrei!</a>
-
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <!--<img src="..." class="card-img-top" alt="...">-->
-      <div class="card-body">
-        <h5 class="card-title">Thor</h5>
-        <p class="card-text">Thor é um cachorro da raça fila visto pela última vez perto da rodoviária</p>
-        <ul>
-            <li><strong>Idade</strong>: 4 anos</li>
-            <li><strong>Cidade/Estado</strong>: Marília / SP</li>
-            <li><strong>Status</strong>: Perdido</li>            
-
-        </ul>
-        <a href="#" class="btn btn-primary">Encontrei!</a>
-
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <!--<img src="..." class="card-img-top" alt="...">-->
-      <div class="card-body">
-        <h5 class="card-title">Thor</h5>
-        <p class="card-text">Thor é um cachorro da raça fila visto pela última vez perto da rodoviária</p>
-        <ul>
-            <li><strong>Idade</strong>: 4 anos</li>
-            <li><strong>Cidade/Estado</strong>: Marília / SP</li>
-            <li><strong>Status</strong>: Perdido</li>            
-
-        </ul>
-        <a href="#" class="btn btn-primary">Encontrei!</a>
-
-      </div>
-    </div>
-  </div>
-</div>
+    <% end %> 
