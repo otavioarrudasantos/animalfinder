@@ -1,3 +1,20 @@
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <%= image_tag "animal-finder.jpg", class: "d-block mx-lg-auto img-fluid", width:"800", height:"600" %>
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">A comunidade Animal Finder te ajudará a encontrar seu Pet</h1>
+        <p class="lead">Utilize a nossa comunidade para encontrar seu Pet desaparecido. Cadastre-se e insira as características de seu animal. Nossa comunidade está pronta para encontrá-lo.</p>
+        <p class="lead">Faça parte da nossa comunidade. Se encontrar algum animal desaparecido na nossa lista, clique em <strong>"Encontrei!"</strong> e o dono irá entrar em contato com você</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <%= link_to "Cadastre-se", new_user_registration_path, class: "btn btn-primary btn-lg px-4 me-md-2"%>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary btn-lg px-4"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <br/>
 <br/>
 <div class="row row-cols-1 row-cols-md-3 g-4">

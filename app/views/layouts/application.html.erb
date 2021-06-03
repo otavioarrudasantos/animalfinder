@@ -15,10 +15,14 @@
     <title>Animal Finder</title>
   </head>
   <body>
-    <%= render 'home/header' %>
-    <div class="container">
+    <% if user_signed_in? %>
+
+      <%= render 'home/header' %>
+    <% end %>
+    <!--<div class="container">
       <%= yield %>
-    </div>
+    </div>-->
+    <%= yield %>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
