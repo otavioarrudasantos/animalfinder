@@ -11,6 +11,66 @@
     </div>
   <% end %>
 
+
+<div class="mb-3">
+  <%= form.label :nome, class:"form-label"%>
+  <%= form.text_field :nome, class:"form-control"%>
+</div>
+
+<div class="mb-3">
+  <%= form.label :idade, class:"form-label"%>
+  <%= form.number_field :idade, class:"form-control"%>
+</div>
+<div class="mb-3">
+  <%= form.label :info_extra, class:"form-label"%>
+  <%= form.text_area :info_extra, class:"form-control"%>
+</div>
+<div class="mb-3">
+  <%= form.label :cidade, class:"form-label"%>
+  <%= form.text_field :cidade, class:"form-control"%>
+</div>
+<div class="mb-3">
+  <%= form.label :estado, class:"form-label"%>
+  <%= form.text_field :estado, class:"form-control"%>
+</div>
+
+
+
+<div class="form-check">
+  <%= radio_button_tag "pet[status]", 0, pet.status == 0, class:"form-check-input" %>
+
+  <label class="form-check-label" for="pet_status_0">
+    Perdido
+  </label>
+</div>
+
+<div class="form-check">
+  <%= radio_button_tag "pet[status]", 1, pet.status == 1, class:"form-check-input" %>
+
+  <label class="form-check-label" for="pet_status_1">
+    Comunicado
+  </label>
+</div>
+
+<div class="form-check">
+  <%= radio_button_tag "pet[status]", 2, pet.status == 2, class:"form-check-input" %>
+
+  <label class="form-check-label" for="pet_status_2">
+    Encontrado
+  </label>
+</div>
+
+<% if @pet.photo.attached? %>
+  <img class="img-fluid img-thumbnail" src="<%=(url_for(@pet.photo))%>" />
+<% end %>
+
+<div class="input-group mb-3">
+
+  <%= form.label "Foto", class:"input-group-text" %>
+  <%= form.file_field :photo, class:"form-control" %>
+</div>
+
+<!--
   <div class="field">
     <%= form.label :nome %>
     <%= form.text_field :nome %>
@@ -44,13 +104,13 @@
   <% if @pet.photo.attached? %>
           <img src="<%=(url_for(@pet.photo))%>" />
   <% end %>
-  
+
     <div class="field">
       <%= form.label :photo %>
       <%= form.file_field :photo %>
     </div>  
-
+-->
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary"%>
   </div>
 <% end %>

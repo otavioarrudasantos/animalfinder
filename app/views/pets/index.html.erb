@@ -1,37 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pets</h1>
+<br/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Idade</th>
-      <th>Info extra</th>
-      <th>Cidade</th>
-      <th>Estado</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <%= link_to 'New Pet', new_pet_path, class:"btn btn-primary" %>
+  </div>
+</div>
+<br/>
 
-  <tbody>
-    <% @pets.each do |pet| %>
-      <tr>
-        <td><%= pet.nome %></td>
-        <td><%= pet.idade %></td>
-        <td><%= pet.info_extra %></td>
-        <td><%= pet.cidade %></td>
-        <td><%= pet.estado %></td>
-        <td><%= pet.status %></td>
-        <td><%= link_to 'Show', pet %></td>
-        <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-        <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+<% @pets.each do |pet| %>
+  <div class="col">
+        <div class="card">
+            <% if pet.photo.attached? %>
+              <img src="<%=(url_for(pet.photo))%>" class="card-img-top" alt="...">
+            <% end %>
+            <div class="card-body">
+                <h5 class="card-title"><%= pet.nome %></h5>
+                <p class="card-text"><%= pet.info_extra %></p>
+                <ul>
+                    <li><strong>Idade</strong>: <%= pet.idade %> ano(s)</li>
+                    <li><strong>Cidade/Estado</strong>: <%= pet.cidade %> / <%= pet.estado %></li>
+                    <li><strong>Status</strong>: 
+                        <% if pet.status == 0 %>
+                          <td> Perdido </td>
+                        <% elsif pet.status == 1 %>
+                          <td> Comunicado </td>
+                        <% else %>
+                          <td> Encontrado </td>
+                        <% end %>
+                    </li>            
 
+                </ul>
+                <% link_to 'Show', pet, class:"btn btn-info" %>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="col">
+                    <%= link_to 'Editar', edit_pet_path(pet), class:"btn btn-secondary" %>
+
+                  </div>
+                  <div class="col"></div>
+                  <div class="col">
+                    <%= link_to 'Deletar', pet, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
 <br>
 
-<%= link_to 'New Pet', new_pet_path %>

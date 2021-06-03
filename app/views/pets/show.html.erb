@@ -1,34 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @pet.nome %>
-</p>
+<br/>
 
-<p>
-  <strong>Idade:</strong>
-  <%= @pet.idade %>
-</p>
+<%= link_to 'Voltar', pets_path, class:"btn btn-light" %>
+<br/>
+<br/>
 
-<p>
-  <strong>Info extra:</strong>
-  <%= @pet.info_extra %>
-</p>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
 
-<p>
-  <strong>Cidade:</strong>
-  <%= @pet.cidade %>
-</p>
+    <div class="card">
+      <% if @pet.photo.attached? %>
+        <img src="<%=(url_for(@pet.photo))%>" class="card-img-top" alt="...">
+      <% end %>
+      <div class="card-body">
+          <h5 class="card-title"><%= @pet.nome %></h5>
+          <p class="card-text"><%= @pet.info_extra %></p>
+          <ul>
+              <li><strong>Idade</strong>: <%= @pet.idade %> ano(s)</li>
+              <li><strong>Cidade/Estado</strong>: <%= @pet.cidade %> / <%= @pet.estado %></li>
+              <li><strong>Status</strong>: 
+                  <% if @pet.status == 0 %>
+                    <td> Perdido </td>
+                  <% elsif @pet.status == 1 %>
+                    <td> Comunicado </td>
+                  <% else %>
+                    <td> Encontrado </td>
+                  <% end %>
+              </li>            
 
-<p>
-  <strong>Estado:</strong>
-  <%= @pet.estado %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @pet.status %>
-</p>
-
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+          </ul>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <%= link_to 'Editar', edit_pet_path(@pet), class:"btn btn-secondary" %>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
