@@ -37,7 +37,8 @@
 
 
   <div class="form-check">
-    <%= radio_button_tag "pet[status]", 0, pet.status == 0, class:"form-check-input" %>
+ 
+    <%= radio_button_tag "pet[status]", 0, pet.status == 0 || pet.status == nil, class:"form-check-input" %>
 
     <label class="form-check-label" for="pet_status_0">
       Perdido
