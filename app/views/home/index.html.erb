@@ -53,5 +53,13 @@
               </div>
           </div>
       </div>
-      <% end %> 
-</div>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="pear_pagination">
+        <%= will_paginate @pets, :page_links => false %>
+      </div>
+    </div>
+  </div>
