@@ -16,12 +16,10 @@
   </head>
   <body>
     <% if user_signed_in? %>
-
       <%= render 'home/header' %>
+    <% else %>
+      <%= render 'home/nosession_header' %>
     <% end %>
-    <!--<div class="container">
-      <%= yield %>
-    </div>-->
     <%= yield %>
 
     <!-- Optional JavaScript; choose one of the two! -->

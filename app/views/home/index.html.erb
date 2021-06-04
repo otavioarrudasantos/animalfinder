@@ -8,8 +8,13 @@
         <p class="lead">Utilize a nossa comunidade para encontrar seu Pet desaparecido. Cadastre-se e insira as características de seu animal. Nossa comunidade está pronta para encontrá-lo.</p>
         <p class="lead">Faça parte da nossa comunidade. Se encontrar algum animal desaparecido na nossa lista, clique em <strong>"Encontrei!"</strong> e o dono irá entrar em contato com você</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <%= link_to "Cadastre-se", new_user_registration_path, class: "btn btn-primary btn-lg px-4 me-md-2"%>
-          <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary btn-lg px-4"%>
+          <% if user_signed_in? %>
+            <%= link_to "Meus Pets", pets_path, class: "btn btn-primary btn-lg px-4 me-md-2"%>
+            
+          <% else %>
+            <%= link_to "Cadastre-se", new_user_registration_path, class: "btn btn-primary btn-lg px-4 me-md-2"%>
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary btn-lg px-4"%>
+          <% end %>
         </div>
       </div>
     </div>
@@ -17,33 +22,36 @@
 
 <br/>
 <br/>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <% @pets.each do |pet| %>
-      <div class="col">
-        <div class="card">
-            <% if pet.photo.attached? %>
-              <img src="<%=(url_for(pet.photo))%>" class="card-img-top" alt="...">
-            <% end %>
-            <div class="card-body">
-                <h5 class="card-title"><%= pet.nome %></h5>
-                <p class="card-text"><%= pet.info_extra %></p>
-                <ul>
-                    <li><strong>Idade</strong>: <%= pet.idade %> ano(s)</li>
-                    <li><strong>Cidade/Estado</strong>: <%= pet.cidade %> / <%= pet.estado %></li>
-                    <li><strong>Status</strong>: 
-                        <% if pet.status == 0 %>
-                          <td> Perdido </td>
-                        <% elsif pet.status == 1 %>
-                          <td> Comunicado </td>
-                        <% else %>
-                          <td> Encontrado </td>
-                        <% end %>
-                    </li>            
+<div class="container">
 
-                </ul>
-                <%= link_to 'Encontrei!', pet, class:"btn btn-success" %>
-                
-            </div>
-        </div>
-    </div>
-    <% end %> 
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @pets.each do |pet| %>
+        <div class="col">
+          <div class="card">
+              <% if pet.photo.attached? %>
+                <img src="<%=(url_for(pet.photo))%>" class="card-img-top" alt="...">
+              <% end %>
+              <div class="card-body">
+                  <h5 class="card-title"><%= pet.nome %></h5>
+                  <p class="card-text"><%= pet.info_extra %></p>
+                  <ul>
+                      <li><strong>Idade</strong>: <%= pet.idade %> ano(s)</li>
+                      <li><strong>Cidade/Estado</strong>: <%= pet.cidade %> / <%= pet.estado %></li>
+                      <li><strong>Status</strong>: 
+                          <% if pet.status == 0 %>
+                            <td> Perdido </td>
+                          <% elsif pet.status == 1 %>
+                            <td> Comunicado </td>
+                          <% else %>
+                            <td> Encontrado </td>
+                          <% end %>
+                      </li>            
+
+                  </ul>
+                  <%= link_to 'Encontrei!', pet, class:"btn btn-success" %>
+                  
+              </div>
+          </div>
+      </div>
+      <% end %> 
+</div>
