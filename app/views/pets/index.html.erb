@@ -18,7 +18,7 @@
               <img src="<%=(url_for(pet.photo))%>" class="card-img-top" alt="...">
             <% end %>
             <div class="card-body">
-                <h5 class="card-title"><%= pet.nome %></h5>
+                <h5 class="card-title"><%= pet.nome %> <%= pet.user_id%></h5>
                 <p class="card-text"><%= pet.info_extra %></p>
                 <ul>
                     <li><strong>Idade</strong>: <%= pet.idade %> ano(s)</li>

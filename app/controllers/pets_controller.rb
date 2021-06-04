@@ -1,9 +1,11 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   # GET /pets or /pets.json
   def index
-    @pets = Pet.all
+    @pets = Pet.where(user_id: current_user.id)
   end
 
   # GET /pets/1 or /pets/1.json
@@ -12,7 +14,8 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
-    @pet = Pet.new
+    # @pet = Pet.new
+    @pet = current_user.pets.build 
   end
 
   # GET /pets/1/edit
@@ -21,7 +24,8 @@ class PetsController < ApplicationController
 
   # POST /pets or /pets.json
   def create
-    @pet = Pet.new(pet_params)
+    # @pet = Pet.new(pet_params)
+    @pet = current_user.pets.build(pet_params)
 
     respond_to do |format|
       if @pet.save
@@ -56,6 +60,11 @@ class PetsController < ApplicationController
     end
   end
 
+  def correct_user
+    @pet = current_user.pets.find_by(id: params[:id])
+    redirect_to root_path, notice:"Não Permitido" if @pet.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
@@ -64,6 +73,6 @@ class PetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_params
-      params.require(:pet).permit(:nome, :idade, :info_extra, :cidade, :estado, :status, :photo)
+      params.require(:pet).permit(:nome, :idade, :info_extra, :cidade, :estado, :status, :photo, :user_id)
     end
 end
