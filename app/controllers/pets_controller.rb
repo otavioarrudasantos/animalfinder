@@ -20,6 +20,7 @@ class PetsController < ApplicationController
 
   # GET /pets/1/edit
   def edit
+    @seens = Seen.where(pet_id: params[:id])
   end
 
   # POST /pets or /pets.json
