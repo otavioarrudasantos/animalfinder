@@ -13,7 +13,14 @@
         <%= link_to "Back", :back, class: "btn btn-outline-secondary" %>
         <br/>
         <br/>
-
+        <div class="mb-3">
+          <%= f.label :nome, class: "form-label" %><br />
+          <%= f.text_field :nome, autofocus: true, autocomplete: "nome", class: "form-control", placeholder:"Seu Nome Aqui" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :telefone, class: "form-label" %><br />
+          <%= f.text_field :telefone, autofocus: true, autocomplete: "telefone", class: "form-control", placeholder:"00 0000-0000" %>
+        </div>
         <div class="mb-3">
           <%= f.label :email, class: "form-label" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder:"nome@exemplo.com" %>
