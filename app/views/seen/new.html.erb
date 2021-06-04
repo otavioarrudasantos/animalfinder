@@ -1,0 +1,43 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<br/>
+
+<%= link_to 'Voltar', root_path, class:"btn btn-light" %>
+<br/>
+<br/>
+<h3>Insira seus dados de contato para informar o dono do animal</h3>
+<br/>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <% if @pet.photo.attached? %>
+        <img src="<%=(url_for(@pet.photo))%>" class="card-img-top" alt="...">
+      <% end %>
+      <div class="card-body">
+          <h5 class="card-title"><%= @pet.nome %></h5>
+          <p class="card-text"><%= @pet.info_extra %></p>
+          <ul>
+              <li><strong>Idade</strong>: <%= @pet.idade %> ano(s)</li>
+              <li><strong>Cidade/Estado</strong>: <%= @pet.cidade %> / <%= @pet.estado %></li>
+              <li><strong>Status</strong>: 
+                  <% if @pet.status == 0 %>
+                    <td> Perdido </td>
+                  <% elsif @pet.status == 1 %>
+                    <td> Comunicado </td>
+                  <% else %>
+                    <td> Encontrado </td>
+                  <% end %>
+              </li>            
+
+          </ul>
+        </div>
+        </div>
+    </div>
+    <div class="col">
+    <%= image_tag "found-pet.svg", class: "d-block mx-lg-auto img-fluid", width:250%>
+
+        <%= render 'form', seen: @seen %>
+    </div>
+</div>
