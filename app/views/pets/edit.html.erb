@@ -1,8 +1,35 @@
 <div class="container">
     <h1>Editing Pet</h1>
-
-    <%= render 'form', pet: @pet %>
-
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <%= render 'form', pet: @pet %>
+        </div>
+        <div class="col">
+            <h3> Comnunicados </h3>
+            <% if @seens.blank? %>
+                <p>Nenhum Comunicado foi feito ainda</p>
+            <% else %>
+                <table class="table table-stripped table-hover table-borderless">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Ação</th>
+                    </thead>
+                    <tbody>
+                    <% @seens.each do |seen| %>
+                        <tr>
+                            <td><%=seen.nome%></td>
+                            <td><%=seen.telefone%></td>
+                            <td>
+                                <%= link_to 'Deletar', pet_seen_path(@pet.id, seen.id), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            <% end %>
+        </div>
+    </div>
     <%= link_to 'Show', @pet %> |
     <%= link_to 'Back', pets_path %>
 </div>
