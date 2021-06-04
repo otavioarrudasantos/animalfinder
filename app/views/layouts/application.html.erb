@@ -20,6 +20,12 @@
     <% else %>
       <%= render 'home/nosession_header' %>
     <% end %>
+    <div class="container">
+    <br/>
+      <% if notice %>
+        <%= render 'layouts/alerts' %>
+      <% end %>
+    </div>
     <%= yield %>
 
     <!-- Optional JavaScript; choose one of the two! -->
