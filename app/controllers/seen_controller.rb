@@ -2,11 +2,7 @@ class SeenController < ApplicationController
     before_action :set_seen, only: %i[ show edit update destroy ]
     before_action :set_pet, only: [ :new, :show, :edit, :update, :destroy, :create ]
     before_action :authenticate_user!, except: [:new, :create]
-  
-    def index
-      @pets = Pet.where(user_id: current_user.id, id: params[:pet_id])
-    end
-  
+   
     def new
         @seen = Seen.new
     end
